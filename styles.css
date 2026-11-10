@@ -191,11 +191,21 @@ textarea {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  cursor: grab;
 }
 
 .task-card[data-priority="Low"] { border-left-color: var(--priority-low); }
 .task-card[data-priority="Medium"] { border-left-color: var(--priority-medium); }
 .task-card[data-priority="High"] { border-left-color: var(--priority-high); }
+
+.task-card.dragging {
+    opacity: 0.5;
+}
+
+.column.drag-over {
+    outline: 2px dashed var(--accent-color);
+    outline-offset: -4px;
+}
 
 .task-card-title {
   font-weight: 600;
