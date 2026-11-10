@@ -10,9 +10,12 @@ const searchInput = document.getElementById('search-input');
 const categoryFilter = document.getElementById('category-filter');
 const taskDescription = document.getElementById('task-description');
 const taskSummary = document.getElementById('task-summary');
+const themeToggle = document.getElementById('theme-toggle');
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
+  applySavedTheme();
+  themeToggle.addEventListener('click', toggletheme);  
   renderTasks();
   
   taskForm.addEventListener('submit', handleAddTask);
@@ -139,4 +142,21 @@ function escapeHtml(str) {
         .replace(/>/g, "&gt;")
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&#39;");
+}
+
+function toggletheme() {
+    const isDark = document.body.classList.toggle('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    updateThemeButton(isDark);
+}
+
+function applySavedTheme() {
+    const isDark = localStorage.getItem('theme') === 'dark';
+    document.body.classList.toggle('dark', isDark);
+    updateThemeButton(isDark);
+}
+
+function updateThemeButton(isDark) {
+  themeToggle.textContent = isDark ? '☀️ Light mode' : '🌙 Dark mode';
+  themeToggle.setAttribute('aria-pressed', isDark);
 }
