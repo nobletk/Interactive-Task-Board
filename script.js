@@ -15,7 +15,7 @@ const themeToggle = document.getElementById('theme-toggle');
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
     applySavedTheme();
-    themeToggle.addEventListener('click', toggletheme);
+    themeToggle.addEventListener('click', toggleTheme);
     renderTasks();
 
     taskForm.addEventListener('submit', handleAddTask);
@@ -154,10 +154,10 @@ function renderTasks() {
     document.getElementById('count-in-progress').textContent = counts['in-progress'];
     document.getElementById('count-completed').textContent = counts['completed'];
 
-    //Task Counter  
+    // Task Counter
     const activeCount = tasks.filter(task => task.status !== 'completed').length;
     const completedCount = tasks.filter(task => task.status === 'completed').length;
-    taskSummary.textContent = `${activeCount} active . ${completedCount} completed`;
+    taskSummary.textContent = `${activeCount} active · ${completedCount} completed`;
 }
 
 // Helper: Create Task DOM element
@@ -172,8 +172,8 @@ function createTaskCard(task) {
     <div class="task-card-title">${escapeHtml(task.title)}</div>
     ${task.description ? `<p class="task-card-description">${escapeHtml(task.description)}</p>` : ''}
     <div class="task-meta">
-      <span>${task.category}</span>
-      <span>${task.priority} Priority</span>
+      <span>${escapeHtml(task.category)}</span>
+      <span>${escapeHtml(task.priority)} Priority</span>
     </div>
     <div class="task-actions">
       <select onchange="updateTaskStatus('${task.id}', this.value)">
@@ -197,7 +197,7 @@ function escapeHtml(str) {
         .replace(/'/g, "&#39;");
 }
 
-function toggletheme() {
+function toggleTheme() {
     const isDark = document.body.classList.toggle('dark');
     localStorage.setItem('theme', isDark ? 'dark' : 'light');
     updateThemeButton(isDark);
