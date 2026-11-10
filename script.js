@@ -9,6 +9,7 @@ const taskPriority = document.getElementById('task-priority');
 const searchInput = document.getElementById('search-input');
 const categoryFilter = document.getElementById('category-filter');
 const taskDescription = document.getElementById('task-description');
+const taskSummary = document.getElementById('task-summary');
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
@@ -98,6 +99,11 @@ function renderTasks() {
   document.getElementById('count-todo').textContent = counts['todo'];
   document.getElementById('count-in-progress').textContent = counts['in-progress'];
   document.getElementById('count-completed').textContent = counts['completed'];
+ 
+  //Task Counter  
+  const activeCount = tasks.filter(task => task.status !== 'completed').length;
+  const completedCount = tasks.filter(task => task.status === 'completed').length;
+  taskSummary.textContent = `${activeCount} active . ${completedCount} completed`;
 }
 
 // Helper: Create Task DOM element

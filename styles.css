@@ -45,6 +45,13 @@ body {
   color: var(--text-muted);
 }
 
+.task-summary {
+    margin-top: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--accent-color);
+}
+
 /* Controls */
 .controls-section {
   background: var(--card-bg);
